@@ -4,13 +4,16 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-temp',
   templateUrl: './temp.component.html',
   styles: [
-  ]
+    `
+      .div-card {
+        display: flex;
+        justify-content: center;
+      }
+    `,
+  ],
 })
 export class TempComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
