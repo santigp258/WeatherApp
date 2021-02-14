@@ -1,1 +1,18 @@
-<p>search works!</p>
+<div fxLayout="column" class="column">
+  <h3>Search Engine</h3>
+  <mat-form-field>
+    <input
+      type="text"
+      placeholder="Search city"
+      aria-label="Number"
+      matInput
+      [(ngModel)]="term"
+    />
+
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option> value </mat-option>
+
+      <mat-option value=""> No matches found for the word </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>

@@ -13,6 +13,7 @@ import { Component, OnInit } from '@angular/core';
   ],
 })
 export class TempComponent implements OnInit {
+  term: string = 'santi';
   constructor() {}
 
   ngOnInit(): void {}
