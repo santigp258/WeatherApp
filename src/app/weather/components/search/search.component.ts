@@ -1,21 +1,44 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { Country } from '../../interfaces/country.interface';
+import { WeatherService } from '../../services/weather.service';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styles: [
-    `
-    .column{
-      width: 300px;
-    }
-    `
-  ]
+  styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  @Input()term : string = '';
-  constructor() { }
+  @Input()
+  term : string = '';
+  countries: Country[] = [];
+  countrySelected! : Country | undefined;
 
-  ngOnInit(): void {
+  constructor(private weather: WeatherService) {}
+
+  ngOnInit(): void {}
+
+  search() {
+    if(!this.term){
+      return;
+    }
+    this.weather
+      .searchCapital(this.term.trim())
+      .subscribe((countries) => (this.countries = countries));
   }
 
+  optionSelected(event: MatAutocompleteSelectedEvent) {
+    if(!event.option.value){
+      this.countrySelected = undefined;
+      return;
+    }
+      const country: Country = event.option.value;
+     // console.log(country);
+     /*  this.term = country.capital;
+      this.weather.getHeroById(hero.id!)
+      .subscribe(hero => this.countrySelected = hero) */
+    
+  }
 }
+
+

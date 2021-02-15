@@ -1,18 +1,33 @@
+<div class="box">
+  <h3>Search Capital</h3>
+</div>
 <div fxLayout="column" class="column">
-  <h3>Search Engine</h3>
-  <mat-form-field>
-    <input
-      type="text"
-      placeholder="Search city"
-      aria-label="Number"
-      matInput
-      [(ngModel)]="term"
-    />
+ <mat-form-field>
+          <input type="text"
+                 placeholder="Pick one"
+                 aria-label="Number"
+                 matInput
+                 [(ngModel)]="term"
+                 [matAutocomplete]="auto"
+                 (input)="search( )">
 
-    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      <mat-option> value </mat-option>
+          <mat-autocomplete autoActiveFirstOption 
+                            #auto="matAutocomplete"
+                            (optionSelected)="optionSelected( $event )">
 
-      <mat-option value=""> No matches found for the word </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
+            <mat-option *ngFor="let country of countries" [value]="country.capital">
+              <img class="img" aria-hidden [src]="country.flag">
+              <span> {{ country.capital }}, </span>
+              <small>{{ country.name}}</small>
+            </mat-option>
+
+            <mat-option value="" *ngIf="countries!.length === 0 && term.trim()!.length > 0">
+              No matches found for the word {{ term }}
+            </mat-option>
+            
+
+          </mat-autocomplete>
+      
+
+      </mat-form-field>
 </div>
