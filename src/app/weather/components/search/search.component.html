@@ -3,19 +3,22 @@
 </div>
 <div fxLayout="column" class="column">
  <mat-form-field>
+  <form autocomplete="off" (ngSubmit)="search()">
           <input type="text"
                  placeholder="Pick one"
                  aria-label="Number"
                  matInput
                  [(ngModel)]="term"
                  [matAutocomplete]="auto"
-                 (input)="search( )">
-
+                 (input)="search()"
+                 name="term"
+                 >
+  </form>
           <mat-autocomplete autoActiveFirstOption 
                             #auto="matAutocomplete"
                             (optionSelected)="optionSelected( $event )">
 
-            <mat-option *ngFor="let country of countries" [value]="country.capital">
+            <mat-option *ngFor="let country of countries" [value]="country.capital" (click)="flag()">
               <img class="img" aria-hidden [src]="country.flag">
               <span> {{ country.capital }}, </span>
               <small>{{ country.name}}</small>
