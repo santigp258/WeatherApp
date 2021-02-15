@@ -1,25 +1,27 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { WeatherResponse } from '../../interfaces/weather.interface';
+import { WeatherService } from '../../services/weather.service';
 
 @Component({
   selector: 'app-card-weather',
   templateUrl: './card-weather.component.html',
   styleUrls: ['./card-weather.component.css']
 })
-export class CardWeatherComponent implements OnInit, OnChanges {
-  @Input('flag') flag: string = '';
+export class CardWeatherComponent implements OnInit {
+  @Input('flag') flag!: string;
   @Input('weather') weather!: WeatherResponse;
 
-  constructor() { }
+  constructor(private weatherService: WeatherService) { }
 
   ngOnInit(): void {
-    
-  }
+    this.weatherService.getWeather('bogota')
+    .subscribe(weather =>{
+      this.weather = weather
+    })
 
-  ngOnChanges(){
-    if(!this.weather){
-      return;
-    }
-    console.log(this.weather.data[0]);
+    this.weatherService.searchCapital('bogota')
+    .subscribe((resp) =>{
+      this.flag = resp[0].flag;
+    });
   }
 }

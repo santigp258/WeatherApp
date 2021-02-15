@@ -13,7 +13,7 @@ body {
 div.widget {
   margin-top: 5px;
   position: relative;
-  width: 355px;
+  width: 400px;
   height: 140px;
   margin: 0 auto;
   background-color: #fcfdfd;
@@ -45,7 +45,9 @@ div.temp {
   color: rgba(0, 0, 0, 0.9);
   font-weight: 100;
 }
-
+div.temp img{
+  margin-left: 5px;
+}
 div.panel {
   display: inline-block;
 }

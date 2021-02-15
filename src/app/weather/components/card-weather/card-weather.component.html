@@ -5,10 +5,10 @@
           {{item.datetime| slice : 0:10 | date}}
       </div>
       <div class="city">
-           {{item.city_name}}, {{item.country_code}}
+           {{item.city_name | slice : 0:10}}, {{item.country_code}}
       </div>
       <div class="temp">
-         <img [src]="item.weather.icon | imgPipe" [alt]="item.weather.description" width="70">
+         <img [src]="item.weather!.icon | imgPipe" [alt]="item.weather!.description" width="70">
          {{item.temp  | number:'0.0-0'}}&deg;
       </div>
   </div>
