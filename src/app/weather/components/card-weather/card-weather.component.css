@@ -14,7 +14,7 @@ div.widget {
   margin-top: 5px;
   position: relative;
   width: 355px;
-  height: 120px;
+  height: 140px;
   margin: 0 auto;
   background-color: #fcfdfd;
   border-radius: 9px;
@@ -41,7 +41,7 @@ div.city {
 }
 
 div.temp {
-  font-size: 81px;
+  font-size: 80px;
   color: rgba(0, 0, 0, 0.9);
   font-weight: 100;
 }

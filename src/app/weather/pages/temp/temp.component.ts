@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Country } from '../../interfaces/country.interface';
+import { WeatherService } from '../../services/weather.service';
+import { Weather, WeatherResponse } from '../../interfaces/weather.interface';
 
 @Component({
   selector: 'app-temp',
@@ -18,13 +20,24 @@ import { Country } from '../../interfaces/country.interface';
   ],
 })
 export class TempComponent implements OnInit {
-  term: string = 'santi';
+  //from child
+  term: string = '';
   flag: string = '';
-  constructor() {}
+  weather!: WeatherResponse;
+  constructor(private weatherService: WeatherService) {}
 
   ngOnInit(): void {}
 
-  viewFlag(event: any) {
-    console.log('parent', event);
+  viewFlag(value: string) {
+    this.flag = value;
   }
+
+  onTerm(term:string){
+    this.term = term;
+    this.weatherService.getWeather(this.term)
+    .subscribe(weather =>{
+      this.weather = weather;
+    });
+  }
+
 }

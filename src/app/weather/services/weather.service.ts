@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Country } from '../interfaces/country.interface';
 
 import { catchError } from 'rxjs/operators';
+import { WeatherResponse } from '../interfaces/weather.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -17,20 +18,26 @@ export class WeatherService {
   private ApiWeatherUrl: string = 'https://api.weatherbit.io/v2.0/current';
   constructor(private http: HttpClient) {}
 
-  get httpParams() {
+  get getCountryParams() {
     return new HttpParams().set('fields', 'name;capital;flag;alpha2Code'); //limit the search
   }
 
   searchCapital(term: string): Observable<Country[]> {
     const url = `${this.ApiCountryUrl}/capital/${term}`;
     return this.http
-      .get<Country[]>(url, { params: this.httpParams })
+      .get<Country[]>(url, { params: this.getCountryParams })
       .pipe(catchError((err) => of([])));
   }
 
   searchbyCapital(term: string): Observable<Country> {
     const url = `${this.ApiCountryUrl}/capital/${term}`;
-    return this.http
-      .get<Country>(url, { params: this.httpParams });
+    return this.http.get<Country>(url, { params: this.getCountryParams });
+  }
+
+  getWeather(capital: string): Observable<WeatherResponse> {
+    const params = new HttpParams()
+      .set('city', capital)
+      .set('key', this.apiKey);
+    return this.http.get<WeatherResponse>(`${this.ApiWeatherUrl}`, { params });
   }
 }

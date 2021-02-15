@@ -10,6 +10,7 @@ import { WeatherService } from '../../services/weather.service';
 })
 export class SearchComponent implements OnInit {
   @Output() onFlag: EventEmitter<string> = new EventEmitter(); //term is string type   
+  @Output() onTerm: EventEmitter<string> = new EventEmitter(); //term is string type   
   term: string = '';
   countries: Country[] = [];
   countrySelected!: Country | undefined;
@@ -40,7 +41,8 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  flag() {
-    this.onFlag.emit(this.term);
+  flag(value: string) {
+    this.onFlag.emit(value);
+    this.onTerm.emit(this.term);
   }
 }

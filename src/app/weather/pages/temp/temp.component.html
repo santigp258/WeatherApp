@@ -1,8 +1,8 @@
 <div class="div-search">
-    <app-search (onFlag)="viewFlag($event)"></app-search>
+    <app-search (onFlag)="viewFlag($event)" (onTerm)="onTerm($event)"></app-search>
 </div>
 <div class="div-card">
     <div class="card">
-        <app-card-weather></app-card-weather>
+        <app-card-weather [flag]="flag" [weather]="weather" ></app-card-weather>
     </div>
 </div>

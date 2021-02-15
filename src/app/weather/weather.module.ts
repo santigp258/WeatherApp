@@ -11,10 +11,11 @@ import { ForecastComponent } from './pages/forecast/forecast.component';
 import { TempComponent } from './pages/temp/temp.component';
 import { SearchComponent } from './components/search/search.component';
 import { CardWeatherComponent } from './components/card-weather/card-weather.component';
+import { ImgPipePipe } from './pipes/img-pipe.pipe';
 
 
 @NgModule({
-  declarations: [ HomeComponent, ForecastComponent, TempComponent, SearchComponent, CardWeatherComponent],
+  declarations: [ HomeComponent, ForecastComponent, TempComponent, SearchComponent, CardWeatherComponent, ImgPipePipe],
   imports: [CommonModule, WeatherRoutingModule, FormsModule, FlexLayoutModule, MaterialModule],
 })
 export class WeatherModule {}

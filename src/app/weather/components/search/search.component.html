@@ -18,7 +18,7 @@
                             #auto="matAutocomplete"
                             (optionSelected)="optionSelected( $event )">
 
-            <mat-option *ngFor="let country of countries" [value]="country.capital" (click)="flag()">
+            <mat-option *ngFor="let country of countries" [value]="country.capital" (click)="flag(country.flag)">
               <img class="img" aria-hidden [src]="country.flag">
               <span> {{ country.capital }}, </span>
               <small>{{ country.name}}</small>
