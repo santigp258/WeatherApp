@@ -10,16 +10,17 @@ import { WeatherService } from '../../services/weather.service';
 export class CardWeatherComponent implements OnInit {
   @Input('flag') flag!: string;
   @Input('weather') weather!: WeatherResponse;
+  default: string = 'bogota';
 
   constructor(private weatherService: WeatherService) { }
 
   ngOnInit(): void {
-    this.weatherService.getWeather('bogota')
+    this.weatherService.getWeather(this.default)
     .subscribe(weather =>{
       this.weather = weather
     })
 
-    this.weatherService.searchCapital('bogota')
+    this.weatherService.searchCapital(this.default)
     .subscribe((resp) =>{
       this.flag = resp[0].flag;
     });

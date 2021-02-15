@@ -37,6 +37,7 @@ export class TempComponent implements OnInit {
     this.weatherService.getWeather(this.term)
     .subscribe(weather =>{
       this.weather = weather;
+      console.log(weather);
     });
   }
 

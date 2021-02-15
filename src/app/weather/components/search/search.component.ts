@@ -34,10 +34,10 @@ export class SearchComponent implements OnInit {
       return;
     }
     const country: string = event.option.value;
-    //console.log(country);
-    this.weather.searchbyCapital(country).subscribe((country) => {
+
+      this.weather.searchbyCapital(country).subscribe((country) => {
       this.countrySelected = country;
-      //console.log(this.countrySelected);
+      this.term = '';
     });
   }
 
