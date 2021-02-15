@@ -7,15 +7,15 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { WeatherRoutingModule } from './weather-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 import { MaterialModule } from '../material/material.module';
-import { ForecastComponent } from './pages/forecast/forecast.component';
 import { TempComponent } from './pages/temp/temp.component';
 import { SearchComponent } from './components/search/search.component';
 import { CardWeatherComponent } from './components/card-weather/card-weather.component';
 import { ImgPipePipe } from './pipes/img-pipe.pipe';
+import { FavoritesComponent } from './pages/favorites/favorites.component';
 
 
 @NgModule({
-  declarations: [ HomeComponent, ForecastComponent, TempComponent, SearchComponent, CardWeatherComponent, ImgPipePipe],
+  declarations: [ HomeComponent, FavoritesComponent, TempComponent, SearchComponent, CardWeatherComponent, ImgPipePipe],
   imports: [CommonModule, WeatherRoutingModule, FormsModule, FlexLayoutModule, MaterialModule],
 })
 export class WeatherModule {}

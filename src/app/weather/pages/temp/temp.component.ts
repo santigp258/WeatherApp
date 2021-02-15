@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Country } from '../../interfaces/country.interface';
 import { WeatherService } from '../../services/weather.service';
-import { Weather, WeatherResponse } from '../../interfaces/weather.interface';
+import {  WeatherResponse } from '../../interfaces/weather.interface';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-temp',
@@ -24,21 +25,32 @@ export class TempComponent implements OnInit {
   term: string = '';
   flag: string = '';
   weather!: WeatherResponse;
+
+  //tosearch
+  countries: Country[] = [];
   constructor(private weatherService: WeatherService) {}
 
   ngOnInit(): void {}
 
-  viewFlag(value: string) {
-    this.flag = value;
+  selected(value: string) {
+    this.weatherService.searchCapital(value)
+    .pipe(
+      switchMap(country => {
+        const capital = country[0].capital.trim(); 
+        this.flag = country[0].flag
+        return this.weatherService.getWeather(capital)
+      })
+    )
+    .subscribe(weather =>{
+      this.weather = weather;
+    })
   }
 
   onTerm(term:string){
-    this.term = term;
-    this.weatherService.getWeather(this.term)
-    .subscribe(weather =>{
-      this.weather = weather;
-      console.log(weather);
-    });
+   this.weatherService.searchCapital(term)
+   .subscribe(countries =>{
+     this.countries = countries;
+   })
   }
 
 }

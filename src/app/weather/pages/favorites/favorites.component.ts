@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-forecast',
-  templateUrl: './forecast.component.html',
+  selector: 'app-favorites',
+  templateUrl: './favorites.component.html',
   styles: [
   ]
 })
-export class ForecastComponent implements OnInit {
+export class FavoritesComponent implements OnInit {
 
   constructor() { }
 

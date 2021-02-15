@@ -1,5 +1,5 @@
 <div class="div-search">
-    <app-search (onFlag)="viewFlag($event)" (onTerm)="onTerm($event)"></app-search>
+    <app-search [countries]="countries" (onSelect)="selected($event)" (onTerm)="onTerm($event)" ></app-search>
 </div>
 <div class="div-card">
     <div class="card">

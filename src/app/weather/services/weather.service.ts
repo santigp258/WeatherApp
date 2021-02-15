@@ -40,4 +40,5 @@ export class WeatherService {
       .set('key', this.apiKey);
     return this.http.get<WeatherResponse>(`${this.ApiWeatherUrl}`, { params });
   }
+  
 }

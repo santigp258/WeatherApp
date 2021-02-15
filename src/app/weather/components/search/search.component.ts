@@ -9,40 +9,32 @@ import { WeatherService } from '../../services/weather.service';
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent implements OnInit {
-  @Output() onFlag: EventEmitter<string> = new EventEmitter(); //term is string type   
+  @Output() onSelect: EventEmitter<string> = new EventEmitter(); //term is string type   
   @Output() onTerm: EventEmitter<string> = new EventEmitter(); //term is string type   
   term: string = '';
-  countries: Country[] = [];
+  @Input() countries: Country[] = [];
   countrySelected!: Country | undefined;
 
   constructor(private weather: WeatherService) {}
 
   ngOnInit(): void {}
 
+
+  optionSelected(event: MatAutocompleteSelectedEvent) {
+    if (!event.option.value || event.option.value == "") {
+      this.countrySelected = undefined;
+      return;
+    }
+    const alphaCode: string = event.option.value;
+
+    this.onSelect.emit(alphaCode)
+  }
+
   search() {
     if (!this.term) {
       return;
     }
-    this.weather
-      .searchCapital(this.term.trim())
-      .subscribe((countries) => (this.countries = countries));
-  }
-
-  optionSelected(event: MatAutocompleteSelectedEvent) {
-    if (!event.option.value) {
-      this.countrySelected = undefined;
-      return;
-    }
-    const country: string = event.option.value;
-
-      this.weather.searchbyCapital(country).subscribe((country) => {
-      this.countrySelected = country;
-      this.term = '';
-    });
-  }
-
-  flag(value: string) {
-    this.onFlag.emit(value);
     this.onTerm.emit(this.term);
   }
+
 }

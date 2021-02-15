@@ -10,20 +10,19 @@
                  matInput
                  [(ngModel)]="term"
                  [matAutocomplete]="auto"
-                 (input)="search()"
                  name="term"
+                 (input)="search()"
                  >
   </form>
           <mat-autocomplete autoActiveFirstOption 
                             #auto="matAutocomplete"
                             (optionSelected)="optionSelected( $event )">
 
-            <mat-option *ngFor="let country of countries" [value]="country.capital" (click)="flag(country.flag)">
+            <mat-option *ngFor="let country of countries" [value]="country.capital">
               <img class="img" aria-hidden [src]="country.flag">
               <span> {{ country.capital }}, </span>
               <small>{{ country.name}}</small>
             </mat-option>
-
             <mat-option value="" *ngIf="countries!.length === 0 && term.trim()!.length > 0">
               No matches found for the word {{ term }}
             </mat-option>
@@ -31,6 +30,5 @@
 
           </mat-autocomplete>
       
-
-      </mat-form-field>
-</div>
+        </mat-form-field>
+      </div>
