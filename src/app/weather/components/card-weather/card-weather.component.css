@@ -59,3 +59,9 @@ div.right-panel {
   margin-top: 35px;
   padding-left: 10px;
 }
+
+.button{
+ position: absolute; 
+ right: 0;
+ margin-right: 5px;
+}

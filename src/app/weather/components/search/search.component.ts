@@ -26,7 +26,7 @@ export class SearchComponent implements OnInit {
       return;
     }
     const alphaCode: string = event.option.value;
-
+    this.term = '';
     this.onSelect.emit(alphaCode)
   }
 

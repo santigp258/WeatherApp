@@ -1,34 +1,36 @@
 <div class="box">
-  <h3>Search Capital</h3>
-</div>
+  <h3>Weather App</h3>
+<mat-divider></mat-divider>
 <div fxLayout="column" class="column">
- <mat-form-field>
-  <form autocomplete="off" (ngSubmit)="search()">
-          <input type="text"
-                 placeholder="Pick one"
-                 aria-label="Number"
-                 matInput
-                 [(ngModel)]="term"
-                 [matAutocomplete]="auto"
-                 name="term"
-                 (input)="search()"
-                 >
-  </form>
-          <mat-autocomplete autoActiveFirstOption 
-                            #auto="matAutocomplete"
-                            (optionSelected)="optionSelected( $event )">
-
-            <mat-option *ngFor="let country of countries" [value]="country.capital">
-              <img class="img" aria-hidden [src]="country.flag">
-              <span> {{ country.capital }}, </span>
-              <small>{{ country.name}}</small>
-            </mat-option>
-            <mat-option value="" *ngIf="countries!.length === 0 && term.trim()!.length > 0">
-              No matches found for the word {{ term }}
-            </mat-option>
-            
-
-          </mat-autocomplete>
-      
-        </mat-form-field>
-      </div>
+  <mat-form-field>
+    <form autocomplete="off" (ngSubmit)="search()">
+      <input
+        type="text"
+        placeholder="Pick one"
+        aria-label="Number"
+        matInput
+        [(ngModel)]="term"
+        [matAutocomplete]="auto"
+        name="term"
+        (input)="search()"
+      />
+    </form>
+    <mat-autocomplete
+      autoActiveFirstOption
+      #auto="matAutocomplete"
+      (optionSelected)="optionSelected($event)"
+    >
+      <mat-option *ngFor="let country of countries" [value]="country.capital">
+        <img class="img" aria-hidden [src]="country.flag" />
+        <span> {{ country.capital }}, </span>
+        <small>{{ country.name }}</small>
+      </mat-option>
+      <mat-option
+        value=""
+        *ngIf="countries!.length === 0 && term.trim()!.length > 0"
+      >
+        No matches found for the word {{ term }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>
