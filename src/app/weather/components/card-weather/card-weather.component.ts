@@ -50,8 +50,10 @@ export class CardWeatherComponent implements OnInit {
   }
 
   addFavorite(city: string = '') {
-    this.weatherService.favorite(city);
+    const favorite = this.weatherService.favorite(city);
+    (!favorite) ? this.showSnakbar("This city has already been added as a favorite") :
     this.showSnakbar('City successfully added');
+    
   }
 
   delete(index: number) {

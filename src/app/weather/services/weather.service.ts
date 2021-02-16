@@ -52,12 +52,15 @@ export class WeatherService {
     return this.http.get<WeatherResponse>(`${this.ApiWeatherUrl}`, { params });
   }
 
-  favorite(query: string) {
+  favorite(query: string): boolean {
     query = query.trim().toLocaleLowerCase();
     if (!this._favorites.includes(query)) {
       this._favorites.unshift(query); //insert al inicio
       localStorage.setItem('favorites', JSON.stringify(this._favorites));
+      return true
     }
+
+    return false
   }
 
   replaceErr(value: string): string {

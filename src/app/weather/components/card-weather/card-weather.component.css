@@ -63,9 +63,9 @@ div.right-panel {
   margin-right: 5px;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 480px) {
   div.widget {
-    width: 200px;
+    width: 230px;
   }
 
   .button {
