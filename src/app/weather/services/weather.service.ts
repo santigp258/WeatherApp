@@ -14,7 +14,8 @@ export class WeatherService {
   private ApiCountryUrl: string = 'https://restcountries.eu/rest/v2';
 
   //weatherbit API
-  private apiKey: string = 'da118f4ae0f1471189d25bf28098e4ed';
+  // private apiKey: string = 'da118f4ae0f1471189d25bf28098e4ed'; //key desactived
+  private apiKey: string = '16baf3a4aa994b58925d240e4764abae'; //new key
   private ApiWeatherUrl: string = 'https://api.weatherbit.io/v2.0/current';
 
   //localStorage
@@ -72,9 +73,9 @@ export class WeatherService {
     return value;
   }
 
-  deleteFavorite(index: number){
+  deleteFavorite(index: number) {
     let local = JSON.parse(localStorage.getItem('favorites') || '');
     local.splice(index, 1);
-    localStorage.setItem('favorites', JSON.stringify(local));    
+    localStorage.setItem('favorites', JSON.stringify(local));
   }
 }

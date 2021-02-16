@@ -6,7 +6,13 @@ import { WeatherService } from '../../services/weather.service';
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
-  styles: [],
+  styles: [
+    `
+    .app-card{
+      margin-top: 15px;
+    }
+    `
+  ],
 })
 export class FavoritesComponent implements OnInit {
   favorites: string[] = [];

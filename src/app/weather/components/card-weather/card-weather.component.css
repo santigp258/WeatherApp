@@ -23,7 +23,6 @@ div.widget {
   box-shadow: 0px 31px 35px -26px #080c21;
 }
 
-
 div.date {
   font-size: 14px;
   font-weight: bold;
@@ -43,7 +42,7 @@ div.temp {
   color: rgba(0, 0, 0, 0.9);
   font-weight: 100;
 }
-div.temp img{
+div.temp img {
   margin-left: 5px;
 }
 div.panel {
@@ -58,8 +57,47 @@ div.right-panel {
   padding-left: 10px;
 }
 
-.button{
- position: absolute; 
- right: 0;
- margin-right: 5px;
+.button {
+  position: absolute;
+  right: 0;
+  margin-right: 5px;
+}
+
+@media (max-width: 320px) {
+  div.widget {
+    width: 200px;
+  }
+
+  .button {
+    position: absolute;
+    right: 0;
+    margin-right: 5px;
+    bottom: -4px;
+  }
+
+  .flag {
+    width: 100%;
+  }
+
+  div.right-panel {
+    width: 101px;
+    position: absolute;
+    right: 7px;
+    float: right;
+    top: 24px;
+    padding-left: 0px;
+  }
+
+  div.city{
+  font-size: 15px;
+  }
+
+  div.left-panel{
+    width: 60%;
+  }
+  
+  div.temp{
+    font-size: 55px;
+    text-align: center;
+  }
 }
