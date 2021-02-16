@@ -13,10 +13,11 @@ import { CardWeatherComponent } from './components/card-weather/card-weather.com
 import { ImgPipePipe } from './pipes/img-pipe.pipe';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { ReplacePipe } from './pipes/replace.pipe';
+import { ConfirmComponent } from './components/confirm/confirm.component';
 
 
 @NgModule({
-  declarations: [ HomeComponent, FavoritesComponent, TempComponent, SearchComponent, CardWeatherComponent, ImgPipePipe, ReplacePipe],
+  declarations: [ HomeComponent, FavoritesComponent, TempComponent, SearchComponent, CardWeatherComponent, ImgPipePipe, ReplacePipe, ConfirmComponent],
   imports: [CommonModule, WeatherRoutingModule, FormsModule, FlexLayoutModule, MaterialModule],
 })
 export class WeatherModule {}

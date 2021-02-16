@@ -1,5 +1,21 @@
 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center">
-<div *ngFor="let item of weather; let i = index" fxFlex="50" fxFlex.lg="40" fxFlex.sm="100" class="app-card">
-    <app-card-weather  [weather]="item" [flag]="flag[i]" [index]="i" (onDelete)="delete($event)"></app-card-weather>
+  <div
+    *ngFor="let item of weather; let i = index"
+    fxFlex="50"
+    fxFlex.lg="40"
+    fxFlex.sm="100"
+    class="app-card"
+  >
+    <app-card-weather
+      [weather]="item"
+      [flag]="flag[i]"
+      [index]="i"
+      (onDelete)="delete($event, item.data[0].city_name)"
+    ></app-card-weather>
+  </div>
 </div>
+
+
+<div fxLayout="row wrap" fxLayoutAlign="center" class="add" *ngIf="weather.length <= 0 || !weather">
+    <img src="../../../../assets/navigation.svg" alt="">
 </div>

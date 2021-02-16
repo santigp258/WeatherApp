@@ -1,0 +1,13 @@
+<h1>Are you sure?</h1>
+<hr>
+
+<p>
+    Soon you will eliminate the country  {{data}}
+    <br>
+    Do you want to continue?
+</p>
+
+<div fxLayout="row" fxLayoutGap="5px" fxLayout.xs="column">
+    <button mat-raised-button color="warn" (click)="delete()">Yes, remove</button>
+    <button mat-raised-button  (click)="cancel()">No, Cancel</button>
+</div>
