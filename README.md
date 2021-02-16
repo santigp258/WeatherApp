@@ -1,3 +1,3 @@
 # WeatherApp
 
-My first app without course
+First application without the help of a course
