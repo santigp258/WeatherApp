@@ -37,17 +37,13 @@ export class TempComponent implements OnInit {
       .searchCapital(value)
       .pipe(
         switchMap((country) => {
+          const capital = country[0].capital.trim();
+          
           //delete special characters
-          let capital = country[0].capital.trim();
-          const match = capital.indexOf("'");
-          const match2 = capital.indexOf(',');
-          if (match > -1) {
-            capital = capital.slice(0, match);
-          } else if (match2 > -1) {
-            capital = capital.slice(0, match2);
-          }
+          const valuePrevent = this.weatherService.replaceErr(capital);
+          
           this.flag = country[0].flag;
-          return this.weatherService.getWeather(capital);
+          return this.weatherService.getWeather(valuePrevent);
         })
       )
       .subscribe((weather) => {

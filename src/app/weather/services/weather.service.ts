@@ -53,18 +53,22 @@ export class WeatherService {
 
   favorite(query: string) {
     query = query.trim().toLocaleLowerCase();
-    //prevent special characters
-    const match = query.indexOf("'");
-    const match2 = query.indexOf(',');
-    if (match > -1) {
-      query = query.slice(0, match);
-    } else if (match2 > -1) {
-      query = query.slice(0, match2);
-    }
     if (!this._favorites.includes(query)) {
       this._favorites.unshift(query); //insert al inicio
       localStorage.setItem('favorites', JSON.stringify(this._favorites));
-      console.log(this._favorites);
     }
+  }
+
+  replaceErr(value: string): string {
+    //prevent special characters
+    const match = value.indexOf("'");
+    const match2 = value.indexOf(',');
+    if (match > -1) {
+      value = value.slice(0, match);
+    } else if (match2 > -1) {
+      value = value.slice(0, match2);
+    }
+
+    return value;
   }
 }
