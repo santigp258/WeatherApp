@@ -24,7 +24,9 @@ export class WeatherService {
     return [...this._favorites];
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this._favorites = JSON.parse(localStorage.getItem('favorites')!) || [];
+  }
 
   get getCountryParams() {
     return new HttpParams().set('fields', 'name;capital;flag;alpha2Code'); //limit the search
@@ -51,9 +53,18 @@ export class WeatherService {
 
   favorite(query: string) {
     query = query.trim().toLocaleLowerCase();
+    //prevent special characters
+    const match = query.indexOf("'");
+    const match2 = query.indexOf(',');
+    if (match > -1) {
+      query = query.slice(0, match);
+    } else if (match2 > -1) {
+      query = query.slice(0, match2);
+    }
     if (!this._favorites.includes(query)) {
       this._favorites.unshift(query); //insert al inicio
       localStorage.setItem('favorites', JSON.stringify(this._favorites));
+      console.log(this._favorites);
     }
   }
 }

@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { WeatherResponse } from '../../interfaces/weather.interface';
 import { WeatherService } from '../../services/weather.service';
 
@@ -12,16 +13,19 @@ export class CardWeatherComponent implements OnInit {
   @Input('weather') weather!: WeatherResponse;
   default: string = 'bogota';
 
-  constructor(private weatherService: WeatherService) {}
+  constructor(private weatherService: WeatherService, private router: Router) {}
 
   ngOnInit(): void {
-    this.weatherService.getWeather(this.default).subscribe((weather) => {
-      this.weather = weather;
-    });
+    //no execute in favorites
+    if (!this.router.url.includes('favorites')) {
+      this.weatherService.getWeather(this.default).subscribe((weather) => {
+        this.weather = weather;
+      });
 
-    this.weatherService.searchCapital(this.default).subscribe((resp) => {
-      this.flag = resp[0].flag;
-    });
+      this.weatherService.searchCapital(this.default).subscribe((resp) => {
+        this.flag = resp[0].flag;
+      });
+    }
   }
 
   addFavorite(city: string = '') {

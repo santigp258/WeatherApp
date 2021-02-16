@@ -1,6 +1,7 @@
 export interface WeatherResponse {
     data:  Datum[];
     count?: number;
+    flag?:  string[];
 }
 
 export interface Datum {

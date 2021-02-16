@@ -25,9 +25,9 @@ export class SearchComponent implements OnInit {
       this.countrySelected = undefined;
       return;
     }
-    const alphaCode: string = event.option.value;
+    const capital: string = event.option.value;
     this.term = '';
-    this.onSelect.emit(alphaCode)
+    this.onSelect.emit(capital)
   }
 
   search() {

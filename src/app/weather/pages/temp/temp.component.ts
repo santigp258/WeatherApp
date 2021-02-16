@@ -39,9 +39,12 @@ export class TempComponent implements OnInit {
         switchMap((country) => {
           //delete special characters
           let capital = country[0].capital.trim();
-          const match = capital.indexOf(',') || capital.indexOf("'");
+          const match = capital.indexOf("'");
+          const match2 = capital.indexOf(',');
           if (match > -1) {
             capital = capital.slice(0, match);
+          } else if (match2 > -1) {
+            capital = capital.slice(0, match2);
           }
           this.flag = country[0].flag;
           return this.weatherService.getWeather(capital);
