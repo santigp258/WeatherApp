@@ -77,5 +77,6 @@ export class WeatherService {
     let local = JSON.parse(localStorage.getItem('favorites') || '');
     local.splice(index, 1);
     localStorage.setItem('favorites', JSON.stringify(local));
+    this._favorites = JSON.parse(localStorage.getItem('favorites') || '');
   }
 }

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { map, switchMap } from 'rxjs/operators';
 import { WeatherResponse } from '../../interfaces/weather.interface';
 import { WeatherService } from '../../services/weather.service';
@@ -58,7 +58,8 @@ export class FavoritesComponent implements OnInit {
     this.weatherService.deleteFavorite(event);
     this.weather = [];
     this.flag = [];
-    this.favorites = JSON.parse(localStorage.getItem('favorites') || '');
+    //refresh values
+    this.favorites = this.weatherService.geFavorites;
     this.showFavorites();
   }
 }
