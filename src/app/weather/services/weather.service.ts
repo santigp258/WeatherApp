@@ -16,6 +16,14 @@ export class WeatherService {
   //weatherbit API
   private apiKey: string = 'da118f4ae0f1471189d25bf28098e4ed';
   private ApiWeatherUrl: string = 'https://api.weatherbit.io/v2.0/current';
+
+  //localStorage
+  private _favorites: string[] = [];
+
+  get geFavorites() {
+    return [...this._favorites];
+  }
+
   constructor(private http: HttpClient) {}
 
   get getCountryParams() {
@@ -40,5 +48,12 @@ export class WeatherService {
       .set('key', this.apiKey);
     return this.http.get<WeatherResponse>(`${this.ApiWeatherUrl}`, { params });
   }
-  
+
+  favorite(query: string) {
+    query = query.trim().toLocaleLowerCase();
+    if (!this._favorites.includes(query)) {
+      this._favorites.unshift(query); //insert al inicio
+      localStorage.setItem('favorites', JSON.stringify(this._favorites));
+    }
+  }
 }

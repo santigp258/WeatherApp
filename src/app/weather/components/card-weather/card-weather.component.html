@@ -1,24 +1,34 @@
 <div class="widget" *ngIf="weather">
-            
-  <div class="left-panel panel" *ngFor="let item of weather.data" >
-      <div class="date">
-          {{item.datetime| slice : 0:10 | date}}
-      </div>
-      <div class="city">
-           {{item.city_name | slice : 0:10}}, {{item.country_code}}
-      </div>
-      <div class="temp">
-         <img [src]="item.weather!.icon | imgPipe" [alt]="item.weather!.description" width="70">
-         {{item.temp  | number:'0.0-0'}}&deg;
-      </div>
+  <div class="left-panel panel" *ngFor="let item of weather.data">
+    <div class="date">
+      {{ item.datetime | slice: 0:10 | date }}
+    </div>
+    <div class="city">
+      {{ item.city_name | slice: 0:10 }}, {{ item.country_code }}
+    </div>
+    <div class="temp">
+      <img
+        [src]="item.weather!.icon | imgPipe"
+        [alt]="item.weather!.description"
+        width="70"
+      />
+      {{ item.temp | number: "0.0-0" }}&deg;
+    </div>
   </div>
   <div class="right-panel panel">
-      <img [src]="flag" alt="" width="160">
+    <img [src]="flag" alt="" width="160" />
   </div>
 
-<div class="button">
-    <button mat-fab aria-label="Favorite Icon" class="button" color="primary">
-        <mat-icon>favorite</mat-icon>
-      </button>
-</div>
+  <div class="button">
+    <button
+      mat-fab
+      aria-label="Favorite Icon"
+      class="button"
+      color="primary"
+      *ngFor="let index of weather.data"
+      (click)="addFavorite(index.city_name)"
+    >
+      <mat-icon>favorite</mat-icon>
+    </button>
+  </div>
 </div>
