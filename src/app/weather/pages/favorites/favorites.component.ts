@@ -30,10 +30,10 @@ export class FavoritesComponent implements OnInit {
             const valueCapital = capital[0].capital;
             const flag = capital[0].flag;
 
-           //prevent errors
+            //prevent errors
             const valuePrevent = this.weatherService.replaceErr(valueCapital);
-            
-            this.flag.unshift(flag);
+
+            this.flag.push(flag);
             return this.weatherService.getWeather(valuePrevent);
           }),
           map((resp) => {
@@ -42,8 +42,17 @@ export class FavoritesComponent implements OnInit {
           })
         )
         .subscribe((weather) => {
-          this.weather.unshift(weather);
+          this.weather.push(weather);
         });
     });
+  }
+
+  delete(event: number) {
+    //reset values for show again
+    this.weatherService.deleteFavorite(event);
+    this.weather = [];
+    this.flag = [];
+    this.favorites = JSON.parse(localStorage.getItem('favorites') || '');
+    this.showFavorites();
   }
 }

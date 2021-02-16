@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { WeatherResponse } from '../../interfaces/weather.interface';
 import { WeatherService } from '../../services/weather.service';
@@ -11,6 +11,12 @@ import { WeatherService } from '../../services/weather.service';
 export class CardWeatherComponent implements OnInit {
   @Input('flag') flag!: string;
   @Input('weather') weather!: WeatherResponse;
+
+  //delete favorite
+  @Input('index') indexFavorite: number = 0;
+  @Output() onDelete: EventEmitter<number> = new EventEmitter(); //term is string type  
+
+  buttonVisibility: boolean = true;
   default: string = 'bogota';
 
   constructor(private weatherService: WeatherService, private router: Router) {}
@@ -25,10 +31,17 @@ export class CardWeatherComponent implements OnInit {
       this.weatherService.searchCapital(this.default).subscribe((resp) => {
         this.flag = resp[0].flag;
       });
+    }else{
+      //diference in favorite button and delete favorite
+      this.buttonVisibility = false;
     }
   }
 
   addFavorite(city: string = '') {
     this.weatherService.favorite(city);
+  }
+
+  delete(index:number){
+    this.onDelete.emit(index)
   }
 }

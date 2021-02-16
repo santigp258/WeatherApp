@@ -19,7 +19,7 @@
     <img [src]="flag" alt="" width="160" />
   </div>
 
-  <div class="button">
+  <div class="button" *ngIf="buttonVisibility">
     <button
       mat-fab
       aria-label="Favorite Icon"
@@ -29,6 +29,19 @@
       (click)="addFavorite(index.city_name)"
     >
       <mat-icon>favorite</mat-icon>
+    </button>
+  </div>
+
+  <div class="button" *ngIf="!buttonVisibility">
+    <button
+      mat-fab
+      aria-label="Favorite Icon"
+      class="button"
+      color="warn"
+      *ngFor="let index of weather.data"
+      (click)="delete(indexFavorite)"
+    >
+      <mat-icon>delete</mat-icon>
     </button>
   </div>
 </div>
